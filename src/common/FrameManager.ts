@@ -949,7 +949,10 @@ export class Frame {
    * multiple elements, the first will be focused.
    */
 
-  async move(selector: string, options: { steps?: number }): Promise<void> {
+  async move(
+    selector: string,
+    options: { steps?: number }
+  ): Promise<{ x: number; y: number} > {
     return this._secondaryWorld.move(selector, options);
   }
 

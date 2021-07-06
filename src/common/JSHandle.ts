@@ -505,10 +505,25 @@ export class ElementHandle<
    * uses {@link Page.mouse} to move to the center of the element.
    * If the element is detached from DOM, the method throws an error.
    */
-  async move(options: MoveOptions = {}): Promise<void> {
+  async move(options: MoveOptions = {}): Promise<{ x: number; y: number }> {
     await this._scrollIntoViewIfNeeded();
-    const { x, y } = await this.clickablePoint();
+
+    let x;
+    let y;
+
+    if (options.xCord && options.yCord) {
+      x = options.xCord;
+      y = options.yCord;
+    } else {
+      const point = await this.clickablePoint();
+
+      x = point.x;
+      y = point.y;
+    }
+
     await this._page.mouse.move(x, y, options);
+
+    return { x, y };
   }
 
   /**
@@ -1066,6 +1081,14 @@ export interface MoveOptions {
    * @defaultValue 1
    */
   steps?: number;
+  /**
+   * X cord
+   */
+  xCord?: number;
+  /**
+   * Y cord
+   */
+  yCord?: number;
 }
 
 /**

@@ -441,11 +441,16 @@ export class DOMWorld {
     await handle.dispose();
   }
 
-  async move(selector: string, options: { steps?: number }): Promise<void> {
+  async move(
+    selector: string,
+    options: { steps?: number }
+  ): Promise<{ x: number; y: number }> {
     const handle = await this.$(selector);
     assert(handle, 'No node found for selector: ' + selector);
-    await handle.move(options);
+    const { x, y } = await handle.move(options);
     await handle.dispose();
+
+    return { x, y };
   }
 
   async down(

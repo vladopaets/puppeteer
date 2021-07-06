@@ -1,6 +1,6 @@
 {
   "name": "puppeteer-extended-frame-methods",
-  "version": "10.2.4",
+  "version": "10.2.5",
   "description": "A high-level API to control headless Chrome over the DevTools Protocol",
   "main": "./cjs-entry.js",
   "types": "lib/types.d.ts",
