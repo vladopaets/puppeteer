@@ -963,8 +963,28 @@ export class Frame {
    * multiple elements, the first will be focused.
    */
 
-  async down(selector: string, options: { button?: string, clickCount?: number }): Promise<void> {
-    return this._secondaryWorld.move(selector, options);
+  async down(
+    selector: string,
+    options: { button?: MouseButton; clickCount?: number }
+  ): Promise<void> {
+    return this._secondaryWorld.down(selector, options);
+  }
+
+  /**
+   * This method fires mouse up event
+   *
+   * @remarks
+   * If there's no element matching `selector`, the method throws an error.
+   *
+   * @param selector - the selector for the element to move. If there are
+   * multiple elements, the first will be focused.
+   */
+
+  async up(
+    selector: string,
+    options: { button?: MouseButton; clickCount?: number }
+  ): Promise<void> {
+    return this._secondaryWorld.up(selector, options);
   }
 
   /**

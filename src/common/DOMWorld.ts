@@ -448,6 +448,26 @@ export class DOMWorld {
     await handle.dispose();
   }
 
+  async down(
+    selector: string,
+    options: { button?: MouseButton; clickCount?: number }
+  ): Promise<void> {
+    const handle = await this.$(selector);
+    assert(handle, 'No node found for selector: ' + selector);
+    await handle.down(options);
+    await handle.dispose();
+  }
+
+  async up(
+    selector: string,
+    options: { button?: MouseButton; clickCount?: number }
+  ): Promise<void> {
+    const handle = await this.$(selector);
+    assert(handle, 'No node found for selector: ' + selector);
+    await handle.up(options);
+    await handle.dispose();
+  }
+
   async focus(selector: string): Promise<void> {
     const handle = await this.$(selector);
     assert(handle, 'No node found for selector: ' + selector);

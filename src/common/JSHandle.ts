@@ -21,6 +21,7 @@ import { Page } from './Page.js';
 import { CDPSession } from './Connection.js';
 import { KeyInput } from './USKeyboardLayout.js';
 import { FrameManager, Frame } from './FrameManager.js';
+import { MouseButton, MouseOptions } from './Input.js';
 import { getQueryHandlerAndSelector } from './QueryHandler.js';
 import { Protocol } from 'devtools-protocol';
 import {
@@ -499,10 +500,29 @@ export class ElementHandle<
     await this._page.mouse.click(x, y, options);
   }
 
+  /**
+   * This method scrolls element into view if needed, and then
+   * uses {@link Page.mouse} to move to the center of the element.
+   * If the element is detached from DOM, the method throws an error.
+   */
   async move(options: MoveOptions = {}): Promise<void> {
     await this._scrollIntoViewIfNeeded();
     const { x, y } = await this.clickablePoint();
     await this._page.mouse.move(x, y, options);
+  }
+
+  /**
+   * uses {@link Page.mouse} to fire the mouse down event.
+   */
+  async down(options: MouseOptions = {}): Promise<void> {
+    await this._page.mouse.down(options);
+  }
+
+  /**
+   * uses {@link Page.mouse} to fire the mouse up event.
+   */
+  async up(options: MouseOptions = {}): Promise<void> {
+    await this._page.mouse.up(options);
   }
 
   /**
@@ -1029,7 +1049,7 @@ export interface ClickOptions {
   /**
    * @defaultValue 'left'
    */
-  button?: 'left' | 'right' | 'middle';
+  button?: MouseButton;
   /**
    * @defaultValue 1
    */
