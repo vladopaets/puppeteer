@@ -48,12 +48,13 @@ export interface ResponseForRequest {
   body: string | Buffer;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type Lowercase<S extends string> = string;
 /**
  * Resource types for HTTPRequests as perceived by the rendering engine.
  *
  * @public
  */
-// @ts-ignore
 export type ResourceType = Lowercase<Protocol.Network.ResourceType>;
 
 /**
