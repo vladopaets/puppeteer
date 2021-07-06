@@ -53,6 +53,7 @@ export interface ResponseForRequest {
  *
  * @public
  */
+// @ts-ignore
 export type ResourceType = Lowercase<Protocol.Network.ResourceType>;
 
 /**
