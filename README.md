@@ -1,4 +1,5 @@
-# Puppeteer
+# Puppeteer Extended Frame Methods
+#### A fork from puppeteer lib with additional frame method, like mouse.down, mouse.move, mouse.up
 
 <!-- [START badges] -->
 
